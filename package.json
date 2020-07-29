@@ -1,6 +1,6 @@
 {
-  "name": "react-native-chatbot",
-  "version": "0.0.1-alpha.12",
+  "name": "@ctt/react-native-chatbot",
+  "version": "0.0.1",
   "description": "React Native Chatbot",
   "main": "lib/index.js",
   "scripts": {
@@ -63,8 +63,7 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
-    "random-id": "1.0.3",
-    "react-native-loader": "^1.1.0"
+    "random-id": "1.0.3"
   },
   "peerDependencies": {
     "react": ">= 0.14.0 < 17.0.0-0",
