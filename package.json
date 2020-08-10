@@ -66,8 +66,10 @@
     "random-id": "1.0.3"
   },
   "peerDependencies": {
+    "@react-native-community/art": ">= 1.2.0",
     "react": ">= 0.14.0 < 17.0.0-0",
     "react-native": ">= 0.45.0",
+    "react-native-indicator": ">= 1.2.2",
     "styled-components": ">= 2.0.0 < 4"
   }
 }
