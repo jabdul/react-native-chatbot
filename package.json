@@ -4,7 +4,10 @@
   "description": "React Native Chatbot",
   "main": "lib/index.js",
   "scripts": {
-    "lint": "./node_modules/.bin/eslint lib/*.jsx",
+    "build": "babel src -d lib --ignore *.spec*.js",
+    "build:watch": "yarn run clean:build && yarn run build --watch src",
+    "clean:build": "rm -rf lib/*",
+    "lint": "./node_modules/.bin/eslint src/*.jsx",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
     "test": "./node_modules/.bin/mocha --require react-native-mock/mock.js --compilers js:babel-core/register --recursive tests/**/*.spec.js",
     "test:watch": "npm test -- --watch",
@@ -40,6 +43,11 @@
   },
   "homepage": "https://github.com/LucasBassetti/react-native-chatbot#readme",
   "devDependencies": {
+    "@babel/cli": "7.10.5",
+    "@babel/core": "7.11.1",
+    "@babel/plugin-transform-runtime": "7.11.0",
+    "@babel/preset-env": "7.11.0",
+    "@babel/preset-react": "7.10.4",
     "babel-core": "^6.25.0",
     "babel-eslint": "^10.0.1",
     "babel-polyfill": "^6.23.0",
