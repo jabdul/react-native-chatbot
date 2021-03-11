@@ -1,7 +1,12 @@
-import styled from 'styled-components/native';
+import { Text, StyleSheet } from "react-native";
 
-const Button = styled.Text`
-  color: ${props => props.invalid ? '#FFF' : props.fontColor};
-`;
+export default function Button(props) {
+  const styles = StyleSheet.create({
+    text: {
+      color: props.invalid ? "#FFF" : props.fontColor,
+      fontSize: 14,
+    },
+  });
 
-export default Button;
+  return <Text style={styles.text}>{props.children}</Text>;
+}

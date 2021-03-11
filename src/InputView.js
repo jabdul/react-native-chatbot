@@ -1,7 +1,3 @@
-import styled from 'styled-components/native';
+import { KeyboardAvoidingView } from "react-native";
 
-const InputView = styled.KeyboardAvoidingView`
-
-`;
-
-export default InputView;
+export default KeyboardAvoidingView;

@@ -1,21 +1,20 @@
-import styled from 'styled-components/native';
+import { View, StyleSheet } from "react-native";
 
-const ImageContainer = styled.View`
-  margin-top: 6;
-  margin-right: 6;
-  margin-bottom: 10;
-  margin-left: 6;
-  padding-top: 2;
-  padding-right: 2;
-  padding-bottom: 2;
-  padding-left: 2;
-  background-color: #fff;
-  border-top-right-radius: 21;
-  border-top-left-radius: 21;
-  border-bottom-right-radius: ${props => props.user ? 21 : 0};
-  border-bottom-left-radius: ${props => props.user ? 0 : 21};
-  border-width: 1;
-  border-color: #ddd;
-`;
+export default function ImageContainer(props) {
+  const styles = StyleSheet.create({
+    container: {
+      padding: 2,
+      margin: 6,
+      marginBottom: 10,
+      backgroundColor: "#fff",
+      borderColor: "#ddd",
+      borderWidth: 1,
+      borderTopRightRadius: 21,
+      borderTopLeftRadius: 21,
+      borderBottomRightRadius: props.user ? 21 : 0,
+      borderBottomLeftRadius: props.user ? 0 : 21,
+    },
+  });
 
-export default ImageContainer;
+  return <View style={styles.container}>{props.children}</View>;
+}

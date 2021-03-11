@@ -1,9 +1,13 @@
-import styled from 'styled-components/native';
+import { Image, StyleSheet } from "react-native";
 
-const Img = styled.Image`
-  height: 40;
-  width: 40;
-  border-radius: 21;
-`;
+export default function Img(props) {
+  return <Image style={styles.container} {...props} />;
+}
 
-export default Img;
+const styles = StyleSheet.create({
+  container: {
+    height: 40,
+    width: 40,
+    borderRadius: 21,
+  },
+});

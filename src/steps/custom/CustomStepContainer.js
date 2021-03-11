@@ -1,17 +1,17 @@
-import styled from 'styled-components/native';
+import { View, StyleSheet } from "react-native";
 
-const ChatStepContainer = styled.View`
-  background-color: #fff;
-  border-radius: 5;
-  border-width: 1;
-  border-color: #ddd;
-  margin-right: 6;
-  margin-bottom: 10;
-  margin-left: 6;
-  padding-top: 16;
-  padding-right: 16;
-  padding-bottom: 16;
-  padding-left: 16;
-`;
+export default function ChatStepContainer(props) {
+  return <View style={styles.container}>{props.children}</View>;
+}
 
-export default ChatStepContainer;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#fff",
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    marginBottom: 10,
+    marginHorizontal: 6,
+    padding: 16,
+  },
+});

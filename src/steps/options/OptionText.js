@@ -1,8 +1,12 @@
-import styled from 'styled-components/native';
+import { Text, StyleSheet } from "react-native";
 
-const OptionElement = styled.Text`
-  color: ${props => props.fontColor};
-  font-size: 14;
-`;
+export default function OptionElement(props) {
+  const styles = StyleSheet.create({
+    text: {
+      color: props.fontColor,
+      fontSize: 14,
+    },
+  });
 
-export default OptionElement;
+  return <Text style={styles.text}>{props.children}</Text>;
+}
