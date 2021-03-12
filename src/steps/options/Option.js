@@ -1,10 +1,15 @@
-import styled from 'styled-components/native';
+import { TouchableOpacity, StyleSheet } from "react-native";
 
-const Option = styled.TouchableOpacity`
-  margin-top: 2;
-  margin-right: 2;
-  margin-bottom: 2;
-  margin-left: 2;
-`;
+export default function Option(props) {
+  return (
+    <TouchableOpacity style={styles.container}>
+      {props.children}
+    </TouchableOpacity>
+  );
+}
 
-export default Option;
+const styles = StyleSheet.create({
+  container: {
+    margin: 2,
+  },
+});

@@ -1,10 +1,14 @@
-import styled from 'styled-components/native';
+import { View, StyleSheet } from "react-native";
 
-const ChatBotContainer = styled.View`
-  background-color: #f5f8fb;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
-`;
+export default function ChatBotContainer(props) {
+  return <View style={styles.container}>{props.children}</View>;
+}
 
-export default ChatBotContainer;
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#f5f8fb",
+    overflow: "hidden",
+    height: "100%",
+    width: "100%",
+  },
+});

@@ -1,12 +1,13 @@
-import styled from 'styled-components/native';
+import { View, StyleSheet } from "react-native";
 
-const OptionElement = styled.View`
-  background-color: ${props => props.bubbleColor};
-  padding-top: 12;
-  padding-right: 12;
-  padding-bottom: 12;
-  padding-left: 12;
-  border-radius: 22;
-`;
+export default function OptionElement(props) {
+  const styles = StyleSheet.create({
+    container: {
+      padding: 12,
+      borderRadius: 22,
+      backgroundColor: props.bubbleColor,
+    },
+  });
 
-export default OptionElement;
+  return <View style={styles.container}>{props.children}</View>;
+}

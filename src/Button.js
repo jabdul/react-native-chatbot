@@ -1,17 +1,16 @@
-import styled from 'styled-components/native';
+import { TouchableOpacity, StyleSheet } from "react-native";
 
-const Button = styled.TouchableOpacity`
-  background-color: ${(props) => {
-    if (props.disabled && !props.invalid) {
-      return '#ddd';
-    }
-    return props.invalid ? '#E53935' : props.backgroundColor;
-  }};
-  height: 50;
-  width: 80;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export default function Button(props) {
+  const styles = StyleSheet.create({
+    container: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 80,
+      height: 50,
+      backgroundColor: props.invalid ? "#E53935" : props.backgroundColor,
+    },
+  });
 
-export default Button;
+  return <TouchableOpacity style={styles.container}>{props.children}</TouchableOpacity>;
+}

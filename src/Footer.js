@@ -1,16 +1,15 @@
-import styled from 'styled-components/native';
+import { View, StyleSheet } from "react-native";
 
-const Footer = styled.View`
-  border-top-width: 1;
-  border-color: ${(props) => {
-    if (props.disabled && !props.invalid) {
-      return '#ddd';
-    }
-    return props.invalid ? '#E53935' : props.color;
-  }};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
+export default function Footer(props) {
+  const styles = StyleSheet.create({
+    container: {
+      display: "flex",
+      flexDirection: "row",
+      alignItems: "center",
+      borderTopWidth: 1,
+      borderColor: props.invalid ? "#E53935" : props.color,
+    },
+  });
 
-export default Footer;
+  return <View style={styles.container}>{props.children}</View>;
+}
