@@ -528,49 +528,51 @@ class ChatBot extends Component {
         >
           {_.map(renderedSteps, this.renderStep)}
         </ScrollView>
-        <InputView
-          behavior={platformBehavior}
-          keyboardVerticalOffset={keyboardVerticalOffset}
-        >
-          <Footer
-            className="rsc-footer"
-            style={footerStyle}
-            disabled={!editable}
-            invalid={inputInvalid}
-            color={botBubbleColor}
-          >
-            <TextInput
-              type="textarea"
-              style={textInputStyle}
-              className="rsc-input"
-              placeholder={placeholder}
-              ref={this.setInputRef}
-              onKeyPress={this.handleKeyPress}
-              onChangeText={text => this.setState({ inputValue: text })}
-              value={inputValue}
-              underlineColorAndroid="transparent"
-              invalid={inputInvalid}
-              editable={editable}
-              {...inputAttributesOverride}
-            />
-            <Button
-              className="rsc-button"
-              style={submitButtonStyle}
-              disabled={!editable}
-              onPress={this.onButtonPress}
-              invalid={inputInvalid}
-              backgroundColor={botBubbleColor}
-            >
-              <ButtonText
-                className="rsc-button-text"
-                invalid={inputInvalid}
-                fontColor={botFontColor}
-              >
-                {submitButtonContent}
-              </ButtonText>
-            </Button>
-          </Footer>
-        </InputView>
+        {editable && (
+            <InputView
+               behavior={platformBehavior}
+               keyboardVerticalOffset={keyboardVerticalOffset}
+             >
+               <Footer
+                 className="rsc-footer"
+                 style={footerStyle}
+                 disabled={!editable}
+                 invalid={inputInvalid}
+                 color={botBubbleColor}
+               >
+                 <TextInput
+                   type="textarea"
+                   style={textInputStyle}
+                   className="rsc-input"
+                   placeholder={placeholder}
+                   ref={this.setInputRef}
+                   onKeyPress={this.handleKeyPress}
+                   onChangeText={text => this.setState({ inputValue: text })}
+                   value={inputValue}
+                   underlineColorAndroid="transparent"
+                   invalid={inputInvalid}
+                   editable={editable}
+                   {...inputAttributesOverride}
+                 />
+                 <Button
+                   className="rsc-button"
+                   style={submitButtonStyle}
+                   disabled={!editable}
+                   onPress={this.onButtonPress}
+                   invalid={inputInvalid}
+                   backgroundColor={botBubbleColor}
+                 >
+                   <ButtonText
+                     className="rsc-button-text"
+                     invalid={inputInvalid}
+                     fontColor={botFontColor}
+                   >
+                     {submitButtonContent}
+                   </ButtonText>
+                 </Button>
+               </Footer>
+            </InputView>
+        ) }
       </ChatBotContainer>
     );
   }
