@@ -1,9 +1,9 @@
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from 'react-native';
 
 export default function Button(props) {
   const styles = StyleSheet.create({
     text: {
-      color: props.invalid ? "#FFF" : props.fontColor,
+      color: props.invalid ? '#FFF' : props.fontColor,
       fontSize: 14,
     },
   });

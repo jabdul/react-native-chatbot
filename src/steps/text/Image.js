@@ -1,4 +1,4 @@
-import { Image, StyleSheet } from "react-native";
+import { Image, StyleSheet } from 'react-native';
 
 export default function Img(props) {
   return <Image style={styles.container} {...props} />;

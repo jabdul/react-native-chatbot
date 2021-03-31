@@ -1,6 +1,6 @@
-import { Dimensions, View, StyleSheet } from "react-native";
+import { Dimensions, View, StyleSheet } from 'react-native';
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 const maxWidth = width * 0.6;
 
 export default function Bubble(props) {
@@ -12,7 +12,7 @@ const useStyles = (props) =>
   StyleSheet.create({
     container: {
       backgroundColor: props.bubbleColor,
-      borderColor: props.invalid ? "#E53935" : props.color,
+      borderColor: props.invalid ? '#E53935' : props.color,
       padding: 12,
       minHeight: 42,
       borderTopLeftRadius: () => {

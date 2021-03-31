@@ -1,4 +1,4 @@
-import { Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from 'react-native';
 
 export default function TextMessage(props) {
   const styles = StyleSheet.create({

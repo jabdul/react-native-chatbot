@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet } from 'react-native';
 
 export default function ImageContainer(props) {
   const styles = StyleSheet.create({
@@ -6,8 +6,8 @@ export default function ImageContainer(props) {
       padding: 2,
       margin: 6,
       marginBottom: 10,
-      backgroundColor: "#fff",
-      borderColor: "#ddd",
+      backgroundColor: '#fff',
+      borderColor: '#ddd',
       borderWidth: 1,
       borderTopRightRadius: 21,
       borderTopLeftRadius: 21,

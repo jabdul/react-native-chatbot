@@ -28,17 +28,12 @@ class OptionsStep extends Component {
         key={value}
         className="rsc-os-option"
         style={optionStyle}
-        onPress={() => this.onOptionClick({ value })}
-      >
+        onPress={() => this.onOptionClick({ value })}>
         <OptionElement
           className="rsc-os-option-element"
           style={optionElementStyle}
-          bubbleColor={optionBubbleColor || bubbleColor}
-        >
-          <OptionText
-            class="rsc-os-option-text"
-            fontColor={optionFontColor || fontColor}
-          >
+          bubbleColor={optionBubbleColor || bubbleColor}>
+          <OptionText class="rsc-os-option-text" fontColor={optionFontColor || fontColor}>
             {label}
           </OptionText>
         </OptionElement>
@@ -49,11 +44,7 @@ class OptionsStep extends Component {
   render() {
     const { options } = this.props.step;
 
-    return (
-      <Options className="rsc-os">
-        {_.map(options, this.renderOption)}
-      </Options>
-    );
+    return <Options className="rsc-os">{_.map(options, this.renderOption)}</Options>;
   }
 }
 

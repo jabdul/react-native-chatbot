@@ -1,3 +1,3 @@
-import { KeyboardAvoidingView } from "react-native";
+import { KeyboardAvoidingView } from 'react-native';
 
 export default KeyboardAvoidingView;
