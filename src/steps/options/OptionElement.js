@@ -6,7 +6,6 @@ const OptionElement = styled.View`
   padding-right: 12;
   padding-bottom: 12;
   padding-left: 12;
-  border-radius: 22;
 `;
 
 export default OptionElement;

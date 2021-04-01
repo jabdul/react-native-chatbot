@@ -5,6 +5,7 @@ const Option = styled.TouchableOpacity`
   margin-right: 2;
   margin-bottom: 2;
   margin-left: 2;
+  text-align:center;
 `;
 
 export default Option;

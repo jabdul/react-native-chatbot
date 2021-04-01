@@ -7,6 +7,8 @@ const Options = styled.View`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items:flex-end;
 `;
 
 export default Options;

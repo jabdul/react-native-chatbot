@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Random from 'random-id';
 import { Dimensions, Keyboard, TextInput, ScrollView, Platform } from 'react-native';
@@ -380,13 +380,12 @@ class ChatBot extends Component {
       avatarWrapperStyle,
       bubbleStyle,
       userBubbleStyle,
-      optionStyle,
-      optionElementStyle,
       customStyle,
       customDelay,
       hideBotAvatar,
       hideUserAvatar,
     } = this.props;
+
     const { options, component, asMessage } = step;
     const steps = {};
     const stepIndex = renderedSteps.map((s) => s.id).indexOf(step.id);
@@ -417,15 +416,7 @@ class ChatBot extends Component {
     }
 
     if (options) {
-      return (
-        <OptionsStep
-          key={index}
-          step={step}
-          triggerNextStep={this.triggerNextStep}
-          optionStyle={optionStyle || bubbleStyle}
-          optionElementStyle={optionElementStyle || bubbleStyle}
-        />
-      );
+      return <Fragment></Fragment>;
     }
 
     return (
@@ -464,6 +455,10 @@ class ChatBot extends Component {
       submitButtonStyle,
       submitButtonContent,
       scrollViewProps,
+
+      optionStyle,
+      bubbleStyle,
+      optionElementStyle
     } = this.props;
 
     const styles = {
@@ -490,52 +485,70 @@ class ChatBot extends Component {
 
     return (
       <ChatBotContainer className={`rsc ${className}`} style={style}>
-        {!!headerComponent && headerComponent}
         <ScrollView
           className="rsc-content"
           style={scrollViewStyle}
           ref={this.setContentRef}
           onContentSizeChange={this.setScrollViewScrollToEnd}
           {...scrollViewProps}>
+          {!!headerComponent && headerComponent}
           {_.map(renderedSteps, this.renderStep)}
         </ScrollView>
-        <InputView behavior={platformBehavior} keyboardVerticalOffset={keyboardVerticalOffset}>
+
+        {currentStep.options && (
           <Footer
             className="rsc-footer"
             style={footerStyle}
             disabled={!editable}
             invalid={inputInvalid}
             color={botBubbleColor}>
-            <TextInput
-              type="textarea"
-              style={textInputStyle}
-              className="rsc-input"
-              placeholder={placeholder}
-              ref={this.setInputRef}
-              onKeyPress={this.handleKeyPress}
-              onChangeText={(text) => this.setState({ inputValue: text })}
-              value={inputValue}
-              underlineColorAndroid="transparent"
-              invalid={inputInvalid}
-              editable={editable}
-              {...inputAttributesOverride}
+            <OptionsStep
+              step={currentStep}
+              triggerNextStep={this.triggerNextStep}
+              optionStyle={optionStyle || bubbleStyle}
+              optionElementStyle={optionElementStyle || bubbleStyle}
             />
-            <Button
-              className="rsc-button"
-              style={submitButtonStyle}
-              disabled={!editable}
-              onPress={this.onButtonPress}
-              invalid={inputInvalid}
-              backgroundColor={botBubbleColor}>
-              <ButtonText
-                className="rsc-button-text"
-                invalid={inputInvalid}
-                fontColor={botFontColor}>
-                {submitButtonContent}
-              </ButtonText>
-            </Button>
           </Footer>
-        </InputView>
+        )}
+        {editable && (
+          <InputView behavior={platformBehavior} keyboardVerticalOffset={keyboardVerticalOffset}>
+            <Footer
+              className="rsc-footer"
+              style={footerStyle}
+              disabled={!editable}
+              invalid={inputInvalid}
+              color={botBubbleColor}>
+              <TextInput
+                type="textarea"
+                style={textInputStyle}
+                className="rsc-input"
+                placeholder={placeholder}
+                ref={this.setInputRef}
+                onKeyPress={this.handleKeyPress}
+                onChangeText={(text) => this.setState({ inputValue: text })}
+                value={inputValue}
+                underlineColorAndroid="transparent"
+                invalid={inputInvalid}
+                editable={editable}
+                {...inputAttributesOverride}
+              />
+              <Button
+                className="rsc-button"
+                style={submitButtonStyle}
+                disabled={!editable}
+                onPress={this.onButtonPress}
+                invalid={inputInvalid}
+                backgroundColor={botBubbleColor}>
+                <ButtonText
+                  className="rsc-button-text"
+                  invalid={inputInvalid}
+                  fontColor={botFontColor}>
+                  {submitButtonContent}
+                </ButtonText>
+              </Button>
+            </Footer>
+          </InputView>
+        )}
       </ChatBotContainer>
     );
   }
