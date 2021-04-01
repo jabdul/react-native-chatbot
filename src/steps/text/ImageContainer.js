@@ -12,8 +12,8 @@ const ImageContainer = styled.View`
   background-color: #fff;
   border-top-right-radius: 21;
   border-top-left-radius: 21;
-  border-bottom-right-radius: ${props => props.user ? 21 : 0};
-  border-bottom-left-radius: ${props => props.user ? 0 : 21};
+  border-bottom-right-radius: ${(props) => (props.user ? 21 : 0)};
+  border-bottom-left-radius: ${(props) => (props.user ? 0 : 21)};
   border-width: 1;
   border-color: #ddd;
 `;
