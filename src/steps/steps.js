@@ -1,9 +1,5 @@
 import CustomStep from './custom/CustomStep';
-import OptionsStep from './options/OptionsStep';
+import OptionsStep from './OptionsStep';
 import TextStep from './text/TextStep';
 
-export {
-  CustomStep,
-  OptionsStep,
-  TextStep,
-};
+export { CustomStep, OptionsStep, TextStep };

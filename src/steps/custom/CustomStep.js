@@ -42,18 +42,8 @@ class CustomStep extends Component {
     const { style, step } = this.props;
 
     return (
-      <CustomStepContainer
-        className="rsc-cs"
-        style={style}
-      >
-        {
-          loading ? (
-            <Loading
-              color={step.loadingColor}
-              custom={true}
-            />
-          ) : this.renderComponent()
-        }
+      <CustomStepContainer className="rsc-cs" style={style}>
+        {loading ? <Loading color={step.loadingColor} custom={true} /> : this.renderComponent()}
       </CustomStepContainer>
     );
   }

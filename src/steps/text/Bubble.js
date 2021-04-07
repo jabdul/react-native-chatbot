@@ -5,7 +5,7 @@ const { width } = Dimensions.get('window');
 const maxWidth = width * 0.6;
 
 const Bubble = styled.View`
-  background-color: ${props => props.bubbleColor};
+  background-color: ${(props) => props.bubbleColor};
   border-top-left-radius: ${(props) => {
     const { isFirst, isLast, user } = props;
     if (!isFirst && !isLast) {

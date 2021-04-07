@@ -64,28 +64,18 @@ class TextStep extends Component {
       hideBotAvatar,
       hideUserAvatar,
     } = this.props;
-    const {
-      avatar,
-      bubbleColor,
-      fontColor,
-      user,
-    } = step;
+    const { avatar, bubbleColor, fontColor, user } = step;
 
     const showAvatar = user ? !hideUserAvatar : !hideBotAvatar;
 
     return (
-      <TextStepContainer
-        className="rsc-ts"
-        user={user}
-      >
-        {
-          isFirst && showAvatar &&
+      <TextStepContainer className="rsc-ts" user={user}>
+        {isFirst && showAvatar && (
           <ImageContainer
             className="rsc-ts-image-container"
             borderColor={bubbleColor}
             style={avatarWrapperStyle}
-            user={user}
-          >
+            user={user}>
             <Img
               className="rsc-ts-image"
               style={avatarStyle}
@@ -95,26 +85,21 @@ class TextStep extends Component {
               alt="avatar"
             />
           </ImageContainer>
-        }
+        )}
         <Bubble
           className="rsc-ts-bubble"
-          style={user ? userBubbleStyle || bubbleStyle :  bubbleStyle}
+          style={user ? userBubbleStyle || bubbleStyle : bubbleStyle}
           user={user}
           bubbleColor={bubbleColor}
           showAvatar={showAvatar}
           isFirst={isFirst}
-          isLast={isLast}
-        >
-          { this.state.loading && <Loading color={fontColor} /> }
-          {
-            !this.state.loading &&
-            <TextMessage
-              className="rsc-ts-text"
-              fontColor={fontColor}
-            >
+          isLast={isLast}>
+          {this.state.loading && <Loading color={fontColor} />}
+          {!this.state.loading && (
+            <TextMessage className="rsc-ts-text" fontColor={fontColor}>
               {this.renderMessage()}
             </TextMessage>
-          }
+          )}
         </Bubble>
       </TextStepContainer>
     );
@@ -141,7 +126,7 @@ TextStep.defaultProps = {
   previousStep: {},
   steps: {},
   previousValue: '',
-  avatarWrapperStyle: {}
+  avatarWrapperStyle: {},
 };
 
 export default TextStep;
