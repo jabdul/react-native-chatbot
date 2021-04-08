@@ -71,7 +71,8 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "prop-types": "^15.5.10",
-    "random-id": "1.0.3"
+    "random-id": "1.0.3",
+    "react-native-simple-radio-button": "2.7.4"
   },
   "peerDependencies": {
     "react": ">= 0.14.0 < 17.0.0-0",
