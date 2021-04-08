@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Random from 'random-id';
 import { Dimensions, Keyboard, TextInput, ScrollView, Platform } from 'react-native';
-import { CustomStep, OptionsStep, TextStep } from './steps/steps';
+import { CustomStep, OptionsStep, TextStep, RadioInputStep } from './steps/steps';
 import schema from './schemas/schema';
 import ChatBotContainer from './ChatBotContainer';
 import InputView from './InputView';
@@ -386,7 +386,7 @@ class ChatBot extends Component {
       hideUserAvatar,
     } = this.props;
 
-    const { options, component, asMessage } = step;
+    const { options, component, asMessage, radios } = step;
     const steps = {};
     const stepIndex = renderedSteps.map((s) => s.id).indexOf(step.id);
     const previousStep = stepIndex > 0 ? renderedSteps[index - 1] : {};
@@ -415,7 +415,7 @@ class ChatBot extends Component {
       );
     }
 
-    if (options) {
+    if (options || radios) {
       return <Fragment></Fragment>;
     }
 
@@ -443,7 +443,6 @@ class ChatBot extends Component {
     const {
       botBubbleColor,
       botFontColor,
-      className,
       contentStyle,
       footerStyle,
       headerComponent,
@@ -458,7 +457,7 @@ class ChatBot extends Component {
 
       optionStyle,
       bubbleStyle,
-      optionElementStyle
+      optionElementStyle,
     } = this.props;
 
     const styles = {
@@ -482,9 +481,8 @@ class ChatBot extends Component {
     const scrollViewStyle = Object.assign({}, styles.content, contentStyle);
     const platformBehavior = Platform.OS === 'ios' ? 'padding' : 'height';
     const inputAttributesOverride = currentStep.inputAttributes || inputAttributes;
-
     return (
-      <ChatBotContainer className={`rsc ${className}`} style={style}>
+      <ChatBotContainer style={style}>
         <ScrollView
           className="rsc-content"
           style={scrollViewStyle}
@@ -510,6 +508,18 @@ class ChatBot extends Component {
             />
           </Footer>
         )}
+
+        {currentStep.radios && (
+          <Footer
+            className="rsc-footer"
+            style={footerStyle}
+            disabled={!editable}
+            invalid={inputInvalid}
+            color={botBubbleColor}>
+            <RadioInputStep step={currentStep} triggerNextStep={this.triggerNextStep} />
+          </Footer>
+        )}
+
         {editable && (
           <InputView behavior={platformBehavior} keyboardVerticalOffset={keyboardVerticalOffset}>
             <Footer

@@ -3,6 +3,7 @@ import textSchema from './textSchema';
 import optionsSchema from './optionsSchema';
 import customSchema from './customSchema';
 import updateSchema from './updateSchema';
+import radioSchema from './radioSchema';
 
 const schema = {
   parse(step) {
@@ -18,6 +19,8 @@ const schema = {
       parser = customSchema;
     } else if (step.update) {
       parser = updateSchema;
+    } else if (step.radios) {
+      parser = radioSchema;
     } else {
       throw new Error(`The step ${JSON.stringify(step)} is invalid`);
     }
