@@ -16,7 +16,6 @@ export default function RadioInputStep(props) {
 
   const handleDone = () => {
     const item = radios[index];
-    console.log('item is', item);
     triggerNextStep(item);
   };
 
