@@ -1,0 +1,22 @@
+export default [
+  {
+    key: 'id',
+    types: ['string', 'number'],
+    required: true,
+  },
+  {
+    key: 'camera',
+    types: ['boolean'],
+    required: true,
+  },
+  {
+    key: 'inputAttributes',
+    types: ['object'],
+    required: false,
+  },
+  {
+    key: 'metadata',
+    types: ['object'],
+    required: false,
+  },
+];
