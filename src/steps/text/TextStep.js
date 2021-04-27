@@ -96,9 +96,7 @@ class TextStep extends Component {
           isLast={isLast}>
           {this.state.loading && <Loading color={fontColor} />}
           {!this.state.loading && (
-            <TextMessage className="rsc-ts-text" fontColor={fontColor}>
-              {this.renderMessage()}
-            </TextMessage>
+            <TextMessage fontColor={fontColor}>{this.renderMessage()}</TextMessage>
           )}
         </Bubble>
       </TextStepContainer>
