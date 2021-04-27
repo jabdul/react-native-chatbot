@@ -1,7 +1,19 @@
-import CustomStep from './custom/CustomStep';
-import OptionsStep from './OptionsStep';
-import RadioInputStep from './RadioInputStep';
+import CustomStep from './custom';
+import OptionsStep from './Options';
+import RadioInputStep from './RadioInput';
 import TextStep from './text/TextStep';
-import CameraStep from './CameraStep';
+import CameraStep from './Camera';
+import ImageGalleryStep from './ImageGallery';
+import AddressStep from './Address';
+import TextAreaStep from './TextArea';
 
-export { CustomStep, OptionsStep, TextStep, RadioInputStep, CameraStep };
+export {
+  CustomStep,
+  OptionsStep,
+  TextStep,
+  RadioInputStep,
+  CameraStep,
+  ImageGalleryStep,
+  AddressStep,
+  TextAreaStep,
+};
