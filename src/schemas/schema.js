@@ -5,6 +5,9 @@ import customSchema from './customSchema';
 import updateSchema from './updateSchema';
 import radioSchema from './radioSchema';
 import cameraSchema from './cameraSchema';
+import imageSchema from './imageSchema';
+import textareaSchema from './textareaSchema';
+import addressSchema from './addressSchema';
 
 const schema = {
   parse(step) {
@@ -24,6 +27,12 @@ const schema = {
       parser = radioSchema;
     } else if (step.camera) {
       parser = cameraSchema;
+    } else if (step.textarea) {
+      parser = textareaSchema;
+    } else if (step.address) {
+      parser = addressSchema;
+    } else if (step.image) {
+      parser = imageSchema;
     } else {
       throw new Error(`The step ${JSON.stringify(step)} is invalid`);
     }

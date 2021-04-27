@@ -5,7 +5,7 @@ export default [
     required: true,
   },
   {
-    key: 'camera',
+    key: 'address',
     types: ['boolean'],
     required: true,
   },

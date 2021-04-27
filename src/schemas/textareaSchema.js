@@ -5,7 +5,7 @@ export default [
     required: true,
   },
   {
-    key: 'camera',
+    key: 'textarea',
     types: ['boolean'],
     required: true,
   },

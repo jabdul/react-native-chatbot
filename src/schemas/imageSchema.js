@@ -5,8 +5,8 @@ export default [
     required: true,
   },
   {
-    key: 'camera',
-    types: ['boolean'],
+    key: 'image',
+    types: ['string', 'boolean'],
     required: true,
   },
   {
