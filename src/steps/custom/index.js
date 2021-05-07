@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../common/Loading';
-import CustomStepContainer from './CustomStepContainer';
+import CustomStepContainer from './StepContainer';
 
 class CustomStep extends Component {
   /* istanbul ignore next */

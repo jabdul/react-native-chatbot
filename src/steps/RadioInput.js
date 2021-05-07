@@ -68,7 +68,8 @@ const useStyle = (props) =>
       justifyContent: 'space-around',
     },
     header: {
-      paddingHorizontal: 20,
+      paddingHorizontal: 15,
+      marginLeft:15,
       flexDirection: 'row',
       justifyContent: 'space-between',
       marginVertical: 20,
@@ -77,7 +78,7 @@ const useStyle = (props) =>
       fontSize: 12,
     },
     done: {
-      fontSize: 12,
+      fontSize: 14,
       color: '#B746A8',
       fontWeight: '600',
     },
@@ -85,7 +86,7 @@ const useStyle = (props) =>
       borderBottomColor: '#E0E0E0',
       borderBottomWidth: 1,
       paddingBottom: 10,
-      paddingHorizontal: 10,
+      paddingHorizontal: 20,
       justifyContent: 'space-between',
       width: Dimensions.get('screen').width,
     },

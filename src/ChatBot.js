@@ -2,11 +2,27 @@ import _ from 'lodash';
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Random from 'random-id';
-import { Dimensions, Keyboard, TextInput, ScrollView, Platform } from 'react-native';
-import { CustomStep, OptionsStep, TextStep, RadioInputStep } from './steps/steps';
+import {
+  Dimensions,
+  Keyboard,
+  TextInput,
+  ScrollView,
+  Platform,
+  KeyboardAvoidingView,
+  View,
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {
+  CustomStep,
+  OptionsStep,
+  TextStep,
+  RadioInputStep,
+  CameraStep,
+  ImageGalleryStep,
+  TextAreaStep,
+  AddressStep,
+} from './steps/steps';
 import schema from './schemas/schema';
-import ChatBotContainer from './ChatBotContainer';
-import InputView from './InputView';
 import Footer from './Footer';
 import Button from './Button';
 import ButtonText from './ButtonText';
@@ -213,11 +229,13 @@ class ChatBot extends Component {
     if (data && data.value) {
       currentStep.value = data.value;
     }
+
     if (data && data.trigger) {
       currentStep.trigger = this.getTriggeredStep(data.trigger, data.value);
     }
 
     if (isEnd) {
+      console.log('here');
       this.handleEnd();
     } else if (currentStep.options && data) {
       const option = currentStep.options.filter((o) => o.value === data.value)[0];
@@ -386,7 +404,7 @@ class ChatBot extends Component {
       hideUserAvatar,
     } = this.props;
 
-    const { options, component, asMessage, radios } = step;
+    const { options, component, asMessage, radios, camera, image, address, textarea } = step;
     const steps = {};
     const stepIndex = renderedSteps.map((s) => s.id).indexOf(step.id);
     const previousStep = stepIndex > 0 ? renderedSteps[index - 1] : {};
@@ -415,7 +433,18 @@ class ChatBot extends Component {
       );
     }
 
-    if (options || radios) {
+    if (image) {
+      return (
+        <ImageGalleryStep
+          step={step}
+          steps={steps}
+          previousValue={previousStep.value}
+          triggerNextStep={this.triggerNextStep}
+        />
+      );
+    }
+
+    if (options || radios || camera || address || textarea) {
       return <Fragment></Fragment>;
     }
 
@@ -442,7 +471,6 @@ class ChatBot extends Component {
     const { currentStep, editable, inputInvalid, inputValue, renderedSteps } = this.state;
     const {
       botBubbleColor,
-      botFontColor,
       contentStyle,
       footerStyle,
       headerComponent,
@@ -451,8 +479,6 @@ class ChatBot extends Component {
       keyboardVerticalOffset,
       placeholder,
       style,
-      submitButtonStyle,
-      submitButtonContent,
       scrollViewProps,
 
       optionStyle,
@@ -481,8 +507,18 @@ class ChatBot extends Component {
     const scrollViewStyle = Object.assign({}, styles.content, contentStyle);
     const platformBehavior = Platform.OS === 'ios' ? 'padding' : 'height';
     const inputAttributesOverride = currentStep.inputAttributes || inputAttributes;
+
     return (
-      <ChatBotContainer style={style}>
+      <View
+        style={[
+          {
+            backgroundColor: '#f5f8fb',
+            overflow: 'hidden',
+            height: '100%',
+            width: '100%',
+            ...style,
+          },
+        ]}>
         <ScrollView
           className="rsc-content"
           style={scrollViewStyle}
@@ -493,45 +529,47 @@ class ChatBot extends Component {
           {_.map(renderedSteps, this.renderStep)}
         </ScrollView>
 
-        {currentStep.options && (
-          <Footer
-            className="rsc-footer"
-            style={footerStyle}
-            disabled={!editable}
-            invalid={inputInvalid}
-            color={botBubbleColor}>
+        <Footer
+          style={footerStyle}
+          disabled={!editable}
+          invalid={inputInvalid}
+          color={botBubbleColor}>
+          {currentStep.options && (
             <OptionsStep
               step={currentStep}
               triggerNextStep={this.triggerNextStep}
               optionStyle={optionStyle || bubbleStyle}
               optionElementStyle={optionElementStyle || bubbleStyle}
             />
-          </Footer>
-        )}
+          )}
 
-        {currentStep.radios && (
-          <Footer
-            className="rsc-footer"
-            style={footerStyle}
-            disabled={!editable}
-            invalid={inputInvalid}
-            color={botBubbleColor}>
+          {currentStep.radios && (
             <RadioInputStep step={currentStep} triggerNextStep={this.triggerNextStep} />
-          </Footer>
-        )}
+          )}
+          {currentStep.address && (
+            <AddressStep step={currentStep} triggerNextStep={this.triggerNextStep} />
+          )}
 
-        {editable && (
-          <InputView behavior={platformBehavior} keyboardVerticalOffset={keyboardVerticalOffset}>
-            <Footer
-              className="rsc-footer"
-              style={footerStyle}
-              disabled={!editable}
-              invalid={inputInvalid}
-              color={botBubbleColor}>
+          {currentStep.textarea && (
+            <TextAreaStep step={currentStep} triggerNextStep={this.triggerNextStep} />
+          )}
+
+          {currentStep.camera && (
+            <CameraStep
+              step={currentStep}
+              triggerNextStep={this.triggerNextStep}
+              optionStyle={optionStyle || bubbleStyle}
+              optionElementStyle={optionElementStyle || bubbleStyle}
+            />
+          )}
+
+          {editable && (
+            <KeyboardAvoidingView
+              behavior={platformBehavior}
+              keyboardVerticalOffset={keyboardVerticalOffset}
+              style={{ flexDirection: 'row', borderWidth: 0.6, borderColor: 'blue', margin: 4 }}>
               <TextInput
-                type="textarea"
                 style={textInputStyle}
-                className="rsc-input"
                 placeholder={placeholder}
                 ref={this.setInputRef}
                 onKeyPress={this.handleKeyPress}
@@ -539,27 +577,20 @@ class ChatBot extends Component {
                 value={inputValue}
                 underlineColorAndroid="transparent"
                 invalid={inputInvalid}
-                editable={editable}
+                editable={true}
                 {...inputAttributesOverride}
               />
               <Button
-                className="rsc-button"
-                style={submitButtonStyle}
+                style={{ backgroundColor: 'transparent' }}
                 disabled={!editable}
                 onPress={this.onButtonPress}
-                invalid={inputInvalid}
-                backgroundColor={botBubbleColor}>
-                <ButtonText
-                  className="rsc-button-text"
-                  invalid={inputInvalid}
-                  fontColor={botFontColor}>
-                  {submitButtonContent}
-                </ButtonText>
+                backgroundColor="white">
+                <Icon name="send" size={23} color="#B746A8" />
               </Button>
-            </Footer>
-          </InputView>
-        )}
-      </ChatBotContainer>
+            </KeyboardAvoidingView>
+          )}
+        </Footer>
+      </View>
     );
   }
 }
