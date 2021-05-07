@@ -43,6 +43,7 @@ export default function TextArea(props) {
                   numberOfLines={5}
                   error={errorParser(errors, touched, 'description')}
                   style={{ minHeight: 120, borderRadius: 5 }}
+                  textInputStyle={{ textAlignVertical: 'top' }}
                 />
               </View>
 

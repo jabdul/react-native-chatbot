@@ -11,6 +11,7 @@ export default function CustomTextInput({
   style,
   multiline,
   numberOfLines,
+  textInputStyle,
 }) {
   return (
     <View style={styles.container}>
@@ -20,7 +21,7 @@ export default function CustomTextInput({
           onChangeText={onChangeText}
           value={value}
           error={error}
-          style={[styles.textInput]}
+          style={[styles.textInput, { ...textInputStyle }]}
           placeholderTextColor="grey"
           multiline={multiline || false}
           numberOfLines={numberOfLines || 1}

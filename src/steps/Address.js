@@ -70,8 +70,7 @@ export default function AddressInput(props) {
                     onValueChange={handleChange('state')}
                     items={states}
                     value={values.state}
-                    style={styles.inputIOS}
-                    useNativeAndroidPickerStyle={false}
+                    useNativeAndroidPickerStyle={true}
                   />
                 </View>
 
@@ -140,15 +139,11 @@ const styles = StyleSheet.create({
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
-    fontSize: 16,
+    fontSize: 13,
     width: screenWidth / 2.5,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
     borderWidth: 1,
     backgroundColor: 'white',
     borderColor: '#B746A8',
     color: 'black',
-    height: 40,
-    // paddingRight: 30, // to ensure the text is never behind the icon
-  },
+
 });
